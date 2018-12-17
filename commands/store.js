@@ -13,3 +13,15 @@ exports.run = async (client, message, args, config) => {
     message.channel.send(embed)
 
 }
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'store',
+    description: 'Display the choice of buying a role.',
+    usage: 'store'
+  };

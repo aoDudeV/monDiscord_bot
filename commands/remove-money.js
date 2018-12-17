@@ -29,8 +29,16 @@ exports.run = async (client, message, args, config) => {
 
     message.channel.send(embed)
 
-
-
-
-
 }
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'remove_money',
+    description: 'Remove money to a user.',
+    usage: 'remove_money [user] [money]'
+  };

@@ -30,3 +30,16 @@ exports.run = async (client, message, args, config) => {
     }
 
 }
+
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'reward_daily',
+    description: 'Daily reward for the current user.',
+    usage: 'reward_daily'
+  };

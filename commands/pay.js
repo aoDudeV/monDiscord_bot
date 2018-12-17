@@ -26,7 +26,16 @@ module.exports.run = async (client, message, args, config) => {
     db.add(`money_${user.id}`, args[1])
     db.subtract(`money_${message.author.id}`, args[1])
 
-
-
-
 }
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'pay',
+    description: 'Give money to a user.',
+    usage: 'pay [user] [money]'
+  };

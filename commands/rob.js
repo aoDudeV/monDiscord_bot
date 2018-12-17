@@ -34,3 +34,16 @@ exports.run = async (client, message, args, config) => {
     db.subtract(`money_${user.id}`, random)
     db.add(`money_${message.author.id}`, random)
 }
+
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'rob',
+    description: 'Steal money from a user.',
+    usage: 'rob [user] (Random 200-1)'
+  };

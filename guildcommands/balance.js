@@ -9,5 +9,16 @@ module.exports.run = async (bot, message, args) => {
 
     message.channel.send('You have a balance of `' + bal + '`')
 
-
 }
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'guild_bal',
+    description: 'Money balance of a user.',
+    usage: 'guild_bal'
+  };

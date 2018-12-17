@@ -2,8 +2,6 @@ const db = require('quick.db')
 const Discord = require('discord.js')
 
 exports.run = async (client, message, args, config) => {
-
-
     
     if (args[0] == 'prostitute') {
 
@@ -41,11 +39,6 @@ exports.run = async (client, message, args, config) => {
         db.add(`money_${message.author.id}`, amount)
     }
 
-
-
-
-
-
     // simple work command
     /*
     let amount = Math.floor(Math.random() * 500) + 1; // 1-500 random number.
@@ -62,3 +55,15 @@ exports.run = async (client, message, args, config) => {
 
 
 }
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+exports.help = {
+    name: 'work',
+    description: 'Display the choice of buying a role.',
+    usage: 'work [type] (prostitute, constructor, programmer)'
+  };

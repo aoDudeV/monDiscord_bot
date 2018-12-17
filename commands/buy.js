@@ -22,9 +22,16 @@ exports.run = async (client, message, args, config) => {
         db.subtract(`money_${message.author.id}`, 1800)
         message.channel.send(message.author.tag + ' You successfully bought the Admin role for `1800$`')
     }
-
-
-
-
-
 }
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'buyrole',
+    description: 'Buy a change role of a user.',
+    usage: 'buyrole [role] (moderator or admin)'
+  };

@@ -3,8 +3,6 @@ const db = require('quick.db')
 
 module.exports.run = async (bot, message, args) => {
 
-
-
     if (!message.member.hasPermission('ADMINISTRATOR')) {
         return message.reply('You do not have enough permission to use this command.')
     }
@@ -17,3 +15,16 @@ module.exports.run = async (bot, message, args) => {
     db.add(`money_${message.guild.id}_${message.author.id}`, args[0])
 
 }
+
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: 0
+  };
+  
+  exports.help = {
+    name: 'guild_add',
+    description: 'Give money to a user.',
+    usage: 'guild_add [user] [money]'
+  };
