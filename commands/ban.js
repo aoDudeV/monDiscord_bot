@@ -10,6 +10,7 @@ exports.run = (client, message, args) => {
   if (!message.guild.member(user).bannable) return message.reply('I cannot ban that member');
   message.guild.ban(user, 2);
 
+  // configuration du RichEmbed au canal mod-log
   const embed = new Discord.RichEmbed()
     .setColor(0x00AE86)
     .setTimestamp()

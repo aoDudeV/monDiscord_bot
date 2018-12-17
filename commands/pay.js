@@ -3,8 +3,6 @@ const db = require('quick.db')
 
 module.exports.run = async (client, message, args, config) => {
 
-
-
     let user = message.mentions.members.first() 
 
     let member = db.fetch(`money_${message.author.id}`)

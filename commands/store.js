@@ -2,10 +2,7 @@ const Discord = require('discord.js')
 const db = require('quick.db')
 
 exports.run = async (client, message, args, config) => {
-
-
-
-     
+  
     let embed = new Discord.RichEmbed()
     .setTitle(`${client.user.tag} Store!`)
     .setDescription('**Use +buy <item> to buy!**')
@@ -14,7 +11,5 @@ exports.run = async (client, message, args, config) => {
     .setColor("RANDOM") 
 
     message.channel.send(embed)
-
-
 
 }
