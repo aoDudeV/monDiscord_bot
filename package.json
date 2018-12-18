@@ -11,9 +11,11 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "discord.js": "^11.1.0",
+    "enmap": "^4.5.0",
     "moment": "^2.18.1",
     "ms": "^2.1.1",
-    "return-deep-diff": "^0.3.0",
-    "quick.db": "^7.0.0-b16"    
+    "parse-ms": "^2.0.0",
+    "quick.db": "^7.0.0-b16",
+    "return-deep-diff": "^0.3.0"    
   }
 }

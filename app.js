@@ -1,19 +1,34 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const Enmap = require("enmap");
 const settings = require('./settings.json');
 const chalk = require('chalk');
 const fs = require('fs');
 const moment = require('moment');
 require('./util/eventLoader')(client);
 
-client.commands = [];
-client.aliases = [];
+client.commands = new Enmap();
+client.aliases = new Enmap();
+
 fs.readdir('./commands/', (err, files) => {
   if (err) console.error(err);
   console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Loading a total of ${files.length} commands.`);
   files.forEach(f => {
     let props = require(`./commands/${f}`);
-    console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Loading Command: ${props.help.name}. 👌`);
+    console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Loading Command: ${props.help.name}. `);
+    client.commands.set(props.help.name, props);
+    props.conf.aliases.forEach(alias => {
+      client.aliases.set(alias, props.help.name);
+    });
+  });
+});
+
+fs.readdir('./guildcommands/', (err, files) => {
+  if (err) console.error(err);
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Loading a total of ${files.length} commands.`);
+  files.forEach(f => {
+    let props = require(`./guildcommands/${f}`);
+    console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Loading Command: ${props.help.name}. `);
     client.commands.set(props.help.name, props);
     props.conf.aliases.forEach(alias => {
       client.aliases.set(alias, props.help.name);
@@ -45,11 +60,17 @@ client.elevation = message => {
   /* This function should resolve to an ELEVATION level which
      is then sent to the command handler for verification*/
   let permlvl = 0;
-  let mod_role = message.guild.roles.find('name', modrolename);
-  if (mod_role && message.member.roles.has(mod_role.id)) permlvl = 2;
-  let admin_role = message.guild.roles.find('name', adminrolename);
-  if (admin_role && message.member.roles.has(admin_role.id)) permlvl = 3;
-  if (message.author.id === ownerid) permlvl = 4;
+
+  let turbo_role = message.guild.roles.find(role => role.name === "Turbo Entities");
+  if (turbo_role && message.member.roles.has(turbo_role.id)) permlvl = 2;
+
+  let mod_role = message.guild.roles.find(role => role.name === "Moderateurs");
+  if (mod_role && message.member.roles.has(mod_role.id)) permlvl = 3;
+
+  let admin_role = message.guild.roles.find(role => role.name === "@admin");
+  if (admin_role && message.member.roles.has(admin_role.id)) permlvl = 4;
+
+  // if (message.author.id === ownerid) permlvl = 5;
   return permlvl;
 };
 
@@ -66,5 +87,9 @@ client.on('warn', e => {
 client.on('error', e => {
   console.log(bgRed(e.replace(regToken, 'that was redacted')));
 });
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}`)
+})
 
 client.login(settings.token);
